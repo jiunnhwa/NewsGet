@@ -1,0 +1,19 @@
+# Ignore all text files
+*.txt
+
+# Ignore all csv files
+*.csv
+
+# Ignore all json files
+*.json
+
+# Ignore files related to API keys
+.env
+
+# Ignore exe
+.exe
+
+# Ignore Folders
+inbox/
+logs/
+backup/

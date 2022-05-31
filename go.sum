@@ -1,0 +1,4 @@
+github.com/endeveit/guesslanguage v0.0.0-20141216121003-b9ec07401dcb h1:z95fAkb3aRK1ufsrcpS4/yiIEtpipJjTgJfivhLU4Gc=
+github.com/endeveit/guesslanguage v0.0.0-20141216121003-b9ec07401dcb/go.mod h1:8f6+5A/hHz2hkYUxivoezHo/OsQbo4argCt878fwLw4=
+github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
+github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=

@@ -1,0 +1,106 @@
+{{ template "base.gohtml" . }}
+{{ define "css" }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style type="text/css">
+
+    </style>
+{{ end}}
+
+{{ define "content" }}
+    <p> {{ .Msg }}</p>
+
+    <div class="container-fluid">
+        <div class="input-group mb-3" style="width: 80%">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-input" onkeyup="myFunc()">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button">Search</button>
+            </div>
+        </div>
+
+        <ul id="myList" class="list-group list-group-flush nav nav-pills nav-fill">
+            <li >
+                <a  href="https://bbengfort.github.io/2016/05/a-microservice-in-go/">Creating a Microservice in Go</a>
+            </li>
+            <li  >
+                <a  href="https://povilasv.me/go-advanced-testing-tips-tricks/">Go advanced testing tips &amp; tricks - Povilas Versockas</a>
+            </li>
+            <li  >
+                <a  href="https://github.com/LightBDD/LightBDD">LightBDD/LightBDD</a>
+            </li>
+        </ul>
+
+        <ul id="myList" class="list-group list-group-flush">
+            {{range .Feeds }}
+                <li  >
+                    <a  href="{{.URL}}">{{.Title}}</a>
+                </li>
+            {{end}}
+        </ul>
+    </div>
+{{ end }}
+
+{{ define "js" }}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+{{ end}}
+
+
+<script type="text/javascript">
+    const searchButton = document.getElementById('search-button');
+    const searchInput = document.getElementById('search-input');
+    searchButton.addEventListener('click', () => {
+        const inputValue = searchInput.value;
+        alert(inputValue);
+    });
+
+
+    //const searchFocus = document.getElementById('search-focus');
+    const keys = [
+        { keyCode: 'AltLeft', isTriggered: false },
+        { keyCode: 'ControlLeft', isTriggered: false },
+    ];
+
+    window.addEventListener('keydown', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = true;
+            }
+        });
+
+        const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
+
+        if (shortcutTriggered) {
+            searchInput.focus();
+        }
+    });
+
+    window.addEventListener('keyup', (e) => {
+        keys.forEach((obj) => {
+            if (obj.keyCode === e.code) {
+                obj.isTriggered = false;
+            }
+        });
+    });
+
+</script>
+<script>
+    function myFunc() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('search-input');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myList");
+        li = ul.getElementsByTagName('li');
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+</script>
