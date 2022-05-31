@@ -24,6 +24,7 @@ type Feed struct {
 	CreatedBy   string //owner of the collection
 }
 
+//ServeRoutes defines the routing
 func ServeRoutes() error {
 
 	//VIEWS
@@ -45,23 +46,10 @@ func ServeRoutes() error {
 //handles home page, updates the view data and serve
 func home(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to NewsGetter.")
-	//viewData := &ViewData{PageTitle: "Home", Msg: "Welcome to NewsGetter."}
-	//ViewHome.SetViewData(viewData).ServeTemplate(w, r)
 }
 
-//apijobs returns a list of News
-//Order by RID Desc(lastest on top)
+//apiNews handles the call
 func apiNews(w http.ResponseWriter, r *http.Request) {
-	// if only one expected
-	//param1 := r.URL.Query().Get("param1")
-	//if param1 != "" {
-	// ... process it, will be the first (only) if multiple were given
-	// note: if they pass in like ?param1=&param2= param1 will also be "" :|
-	//}
-	// if multiples possible, or to process empty values like param1 in
-	// ?param1=&param2=something
-	//param1s := r.URL.Query()["param1"]
-	//if len(param1s) > 0 {}
 	limit := -1
 	if n, err := strconv.Atoi(text.ToUpper(r.URL.Query().Get("limit"))); err == nil {
 		limit = n

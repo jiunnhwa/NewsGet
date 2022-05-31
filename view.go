@@ -11,13 +11,6 @@ var tplDir = "./html/templates"
 
 //ViewData is a collection of data for the view
 type ViewData struct {
-	// Page
-	// User
-	//Feeds []Feed
-	// Rows    [][]string
-	//Records      []Record
-	//Agents       []Agent
-	//Sessions     []Session
 	RowCount            int
 	Message             string
 	PageTitle           string
@@ -54,6 +47,7 @@ func NewView(files []string) *View {
 	return v
 }
 
+//ParseFiles and returns View
 func (v *View) ParseFiles() *View {
 	tmpl, err := template.ParseFiles(v.Files...)
 	v.tpl = template.Must(tmpl, err)
@@ -63,16 +57,19 @@ func (v *View) ParseFiles() *View {
 	return v
 }
 
+//SetViewData updates ViewData
 func (v *View) SetViewData(vd *ViewData) *View {
 	v.ViewData = *vd
 	return v
 }
 
+//ServeTemplate writes out from template
 func (v *View) ServeTemplate(w http.ResponseWriter, r *http.Request) *View {
 	v.tpl.Execute(w, v.ViewData)
 	return v
 }
 
+//ToHTML writes out the template as html
 func (v *View) ToHTML(ffname string) *View {
 	file, err := os.Create(ffname)
 	if err != nil {
